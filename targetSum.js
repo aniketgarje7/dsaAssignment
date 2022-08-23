@@ -1,31 +1,23 @@
 <script>
-function hasArrayTwoCandidates(A, ans, sum)
+function hasArrayTwoCandidates(nums, ans, target)
 {
-    var l, r;
-    var arr_size = A.length;
-    A.sort();
-    l = 0;
-    r = arr_size - 1;
-    while (l < r) {
-        if (A[l] + A[r] == sum){
-            ans[0]=l;
-            ans[1]=r;
-          break;}
-        else if (A[l] + A[r] < sum){
-            l++;}
-        else{
-            r--;}
-    }
-    return ans;
+   var map = new Map();
+
+  for(var i = 0; i<nums.length; i++) {
+      var num = nums[i];
+      if(map.get(num) === undefined) {map.set(target-num, i);}
+      else {return [map.get(num), i]}
+  }
+  return [-1,-1];
 }
  
 
-var A = [ 1, 4, 45, 6, 10, -8 ]
-var n = 16;
+var nums = [ 1, 4, 45, 6, 10, -8 ]
+var target = 16;
 let ans = [-1,-1];
 
 
-(hasArrayTwoCandidates(A, ans, n))
+ans = (hasArrayTwoCandidates(nums, ans, target))
     document.write(ans);
 
  
